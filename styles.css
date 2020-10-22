@@ -40,6 +40,10 @@ button {
   width: 200px;
 }
 
+button:disabled {
+  background-color: grey;
+}
+
 .radio {
   display: grid;
   grid-template-columns: auto;
@@ -48,6 +52,11 @@ button {
 
 .hidden {
   transform: scale(0.01);
+  opacity: 1;
+  transition: opacity 0;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-delay: 0ms;
 }
 
 .wrapper {

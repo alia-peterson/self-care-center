@@ -37,9 +37,11 @@ var receiveMessageButton = document.querySelector('#receive-message')
 var clearContentsButton = document.querySelector('#clear-contents')
 var displayedMessage = document.querySelector('#new-message')
 var meditationLogo = document.querySelector('#meditation-logo')
+var radioButtons = document.querySelectorAll('.radio')
 
 //eventhandlers
 receiveMessageButton.addEventListener('click', displayNewMessage)
+clearContentsButton.addEventListener('click', clearMessageContents)
 
 //functions
 function displayNewMessage() {
@@ -54,12 +56,37 @@ function displayNewMessage() {
   }
 }
 
+function clearMessageContents() {
+  for (var i = 0; i < radioButtons.length; i++) {
+    radioButtons[i].checked = false
+  }
+  displayedMessage.innerText = ''
+  showLogo()
+  hideClearContents()
+}
+
+// function enableMessageButton() {
+//   for (var i = 0; i < radioButtons.length; i++) {
+//     if (radioButtons[i].checked) {
+//       receiveMessageButton.disabled = false
+//     }
+//   }
+// }
+
 function hideLogo() {
   meditationLogo.classList.add('hidden')
 }
 
+function showLogo() {
+  meditationLogo.classList.remove('hidden')
+}
+
 function displayClearContents() {
   clearContentsButton.classList.remove('hidden')
+}
+
+function hideClearContents() {
+  clearContentsButton.classList.add('hidden')
 }
 
 function randomIndexGenerator(array) {
