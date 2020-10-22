@@ -34,6 +34,7 @@ var mantras = [
 
 //queryselectors
 var receiveMessageButton = document.querySelector('#receive-message')
+var clearContentsButton = document.querySelector('#clear-contents')
 var displayedMessage = document.querySelector('#new-message')
 var meditationLogo = document.querySelector('#meditation-logo')
 
@@ -44,11 +45,21 @@ receiveMessageButton.addEventListener('click', displayNewMessage)
 function displayNewMessage() {
   if (document.getElementById('radio-affirm').checked) {
     displayedMessage.innerText = affirmations[randomIndexGenerator(affirmations)]
-    meditationLogo.classList.add('hidden')
+    hideLogo()
+    displayClearContents()
   } else if (document.getElementById('radio-mantra').checked) {
-      displayedMessage.innerText = mantras[randomIndexGenerator(mantras)]
-      meditationLogo.classList.add('hidden')
+    displayedMessage.innerText = mantras[randomIndexGenerator(mantras)]
+    hideLogo()
+    displayClearContents()
   }
+}
+
+function hideLogo() {
+  meditationLogo.classList.add('hidden')
+}
+
+function displayClearContents() {
+  clearContentsButton.classList.remove('hidden')
 }
 
 function randomIndexGenerator(array) {

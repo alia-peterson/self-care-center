@@ -11,18 +11,19 @@
     <section class="wrapper">
       <section class="selection-box">
         <section id="radio-input-box">
-          <input type="radio" name="radio" value="" id="radio1">
-          <label for="radio1">affirmation</label>
-          <input type="radio" name="radio" value="" id="radio2">
-          <label for="radio2">mantra</label>
+          <input class="radio" type="radio" name="radio" id="radio-affirm">
+          <label for="radio-affirm">affirmation</label>
+          <input class="radio" type="radio" name="radio" id="radio-mantra">
+          <label for="radio-mantra">mantra</label>
         </section>
         <section>
-          <button type="button" name="message">Receive Message</button>
+          <button id="receive-message" type="button" name="message">Receive Message</button>
         </section>
       </section>
       <section class="message-box">
-        <p></p>
+        <p id="new-message"></p>
         <img id="meditation-logo" src="./assets/meditate.svg" alt="meditation bell logo">
+        <button class="hidden" id="clear-contents" type="button" name="clear-contents">Clear Contents</button>
       </section>
     </section>
     <script type="text/javascript" src="main.js"></script>

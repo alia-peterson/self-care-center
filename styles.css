@@ -1,5 +1,5 @@
 * {
-  //border: solid #F06292 1px;
+  //border: solid black 1px;
 }
 
 body, html {
@@ -25,6 +25,10 @@ h2 {
   flex-direction: column;
 }
 
+p {
+  margin-bottom: -40px;
+}
+
 button {
   align-items: center;
   background-color: #134d71;
@@ -34,6 +38,16 @@ button {
   height: 30px;
   margin: 20px;
   width: 200px;
+}
+
+.radio {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 0.5em;
+}
+
+.hidden {
+  transform: scale(0.01);
 }
 
 .wrapper {
@@ -60,9 +74,15 @@ button {
   background: white;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   height: 160px;
   justify-content: center;
   width: 860px
+}
+
+#clear-contents {
+  margin-bottom: -40px;
+  margin-left: 650px;
 }
 
 #radio-input-box {
@@ -74,8 +94,9 @@ button {
 }
 
 #meditation-logo {
-  height: 100px;
-  width:100px;
+  height: 80px;
+  margin-bottom: -25px;
+  width: 80px;
 }
 
 /* font-family: 'Quicksand', sans-serif;
