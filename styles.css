@@ -35,6 +35,28 @@ h2 {
   flex-direction: column;
 }
 
+#selection-box {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  height: 100px;
+  justify-content: space-around;
+  margin-bottom: 100px;
+  font-size: 14px;
+  width: 580px;
+}
+
+#message-box {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  height: 160px;
+  justify-content: center;
+  width: 860px
+}
+
 /* font-family: 'Quicksand', sans-serif;
 COLORS
 light-yellow - #f7e4bf;
