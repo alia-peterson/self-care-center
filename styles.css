@@ -35,6 +35,17 @@ h2 {
   flex-direction: column;
 }
 
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#meditation-logo {
+  height: 100px;
+  width:100px;
+}
+
 #selection-box {
   align-items: center;
   background: white;
