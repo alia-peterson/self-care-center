@@ -33,16 +33,21 @@ var mantras = [
 ]
 
 //queryselectors
-var receiveMessageButton = querySelector('#receive-message')
-var displayedMessage = querySelector('#new-message')
+var receiveMessageButton = document.querySelector('#receive-message')
+var displayedMessage = document.querySelector('#new-message')
+var meditationLogo = document.querySelector('#meditation-logo')
 
 //eventhandlers
 receiveMessageButton.addEventListener('click', displayNewMessage)
 
 //functions
 function displayNewMessage() {
-  if (document.getElementById(radio1).checked) {
-    displayedMessage.innerText =
+  if (document.getElementById('radio-affirm').checked) {
+    displayedMessage.innerText = affirmations[randomIndexGenerator(affirmations)]
+    meditationLogo.classList.add('hidden')
+  } else if (document.getElementById('radio-mantra').checked) {
+      displayedMessage.innerText = mantras[randomIndexGenerator(mantras)]
+      meditationLogo.classList.add('hidden')
   }
 }
 
