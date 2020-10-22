@@ -1,3 +1,29 @@
+* {
+  //border: solid #F06292 1px;
+}
+
+body {
+  background: #78a7c6;
+  //background: linear-gradient(0deg rgb(19, 77, 113) 20%, rgb(213,212,193) 80%);
+  display: block;
+  font-family: 'Quicksand', sans-serif
+}
+
+h1 {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 110px;
+}
+
+h2 {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
 /* font-family: 'Quicksand', sans-serif;
 COLORS
 light-yellow - #f7e4bf;
