@@ -10,7 +10,7 @@
     <h2>Which type of message?</h2>
     <section class="wrapper">
       <section class="selection-box">
-        <section id="radio-input-box">
+        <section class="radio-input-box">
           <input class="radio" type="radio" name="radio" id="radio-affirm">
           <label for="radio-affirm">affirmation</label>
           <input class="radio" type="radio" name="radio" id="radio-mantra">
@@ -24,6 +24,16 @@
         <p id="new-message"></p>
         <img id="meditation-logo" src="./assets/meditate.svg" alt="meditation bell logo">
         <button class="hidden" id="clear-contents" type="button" name="clear-contents">Clear Contents</button>
+      </section>
+      <section class="input-box">
+        <input id="message-input" type="text" name="message-input" value="" placeholder="your message here">
+        <button id="new-message" type="button" name="new-message">Submit</button>
+        <section class="radio-input-box">
+          <input class="radio" type="radio" name="radio" id="radio-affirm">
+          <label for="radio-affirm">affirmation</label>
+          <input class="radio" type="radio" name="radio" id="radio-mantra">
+          <label for="radio-mantra">mantra</label>
+        </section>
       </section>
     </section>
     <script type="text/javascript" src="main.js"></script>
