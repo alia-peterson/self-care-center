@@ -9,17 +9,6 @@ body {
   font-family: 'Quicksand', sans-serif
 }
 
-button {
-  align-items: center;
-  background-color: #134d71;
-  border-radius: 5px;
-  color: white;
-  font-size: 14px;
-  height: 30px;
-  margin: 20px;
-  width: 200px;
-}
-
 h1 {
   align-items: center;
   color: white;
@@ -35,15 +24,21 @@ h2 {
   flex-direction: column;
 }
 
+button {
+  align-items: center;
+  background-color: #134d71;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  height: 30px;
+  margin: 20px;
+  width: 200px;
+}
+
 .wrapper {
   align-items: center;
   display: flex;
   flex-direction: column;
-}
-
-#meditation-logo {
-  height: 100px;
-  width:100px;
 }
 
 #selection-box {
@@ -58,6 +53,10 @@ h2 {
   width: 580px;
 }
 
+#radio-input-box {
+  width: 500px;
+}
+
 #message-box {
   align-items: center;
   background: white;
@@ -66,6 +65,11 @@ h2 {
   height: 160px;
   justify-content: center;
   width: 860px
+}
+
+#meditation-logo {
+  height: 100px;
+  width:100px;
 }
 
 /* font-family: 'Quicksand', sans-serif;
