@@ -1,3 +1,83 @@
+* {
+  //border: solid #F06292 1px;
+}
+
+body, html {
+  background: linear-gradient(#134d71 20%, #F8BBD0);
+  background-size: cover;
+  height: 100%;
+  font-family: 'Quicksand', sans-serif
+}
+
+h1 {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 110px;
+  padding-top: 40px;
+}
+
+h2 {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  align-items: center;
+  background-color: #134d71;
+  border-radius: 5px;
+  color: white;
+  font-size: 18px;
+  height: 30px;
+  margin: 20px;
+  width: 200px;
+}
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.selection-box {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-around;
+  margin-bottom: 100px;
+  font-size: 18px;
+  width: 580px;
+}
+
+.message-box {
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  height: 160px;
+  justify-content: center;
+  width: 860px
+}
+
+#radio-input-box {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  font-style: italic;
+  width: 420px;
+}
+
+#meditation-logo {
+  height: 100px;
+  width:100px;
+}
+
 /* font-family: 'Quicksand', sans-serif;
 COLORS
 light-yellow - #f7e4bf;
