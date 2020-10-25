@@ -41,7 +41,6 @@ var submitButton = document.querySelector('#submit')
 var displayedMessage = document.querySelector('#new-message')
 var meditationLogo = document.querySelector('.meditation-logo')
 var radioButtons = document.querySelectorAll('.radio')
-var firstRadio = document.querySelector('.radio')
 var userInputForm = document.querySelector('.input-box')
 var userInputMessage = document.querySelector('#message-input')
 
@@ -55,19 +54,17 @@ submitButton.addEventListener('click', submitNewMessage)
 function displayNewMessage() {
   if (document.getElementById('radio-affirm').checked) {
     displayedMessage.innerText = affirmations[randomIndexGenerator(affirmations)]
-    hideLogo()
-    displayClearContents()
   } else if (document.getElementById('radio-mantra').checked) {
     displayedMessage.innerText = mantras[randomIndexGenerator(mantras)]
-    hideLogo()
-    displayClearContents()
   }
+  hideLogo()
+  displayClearContentsButton()
 }
 
 function clearMessageContents() {
-  for (var i = 0; i < 2; i++) {
-    radioButtons[i].checked = false
-  }
+  radioButtons[0].checked = false
+  radioButtons[1].checked = false
+
   displayedMessage.innerText = ''
   showLogo()
   hideClearContents()
@@ -78,28 +75,34 @@ function showUserMessageForm() {
 }
 
 function submitNewMessage() {
-  if (document.getElementById('radio-affirm-input').checked) {
+  if (document.getElementById('radio-affirm-input').checked && userInputMessage.value) {
     affirmations.push(userInputMessage.value)
-  } else if (document.getElementById('radio-mantra-input').checked) {
+  } else if (document.getElementById('radio-mantra-input').checked && userInputMessage.value) {
     mantras.push(userInputMessage.value)
+  } else {
+    return document.querySelector('.error-message').classList.remove('hidden')
   }
   hideLogo()
+  displayUserMessage()
+}
+
+function displayUserMessage() {
   displayedMessage.innerText = userInputMessage.value
   userInputMessage.value = ''
+  document.querySelector('.error-message').classList.add('hidden')
+
+  radioButtons[2].checked = false
+  radioButtons[3].checked = false
 }
 
 function addRadioEventListener() {
   for (var i = 0; i < 2; i++) {
-    console.log('hiii');
-    radioButtons[i].addEventListener('click', function() {
-    })
+    radioButtons[i].addEventListener('click', enableMessageButton)
   }
-}
+} addRadioEventListener()
 
 function enableMessageButton() {
-  console.log('hello!!');
   receiveMessageButton.disabled = false
-  // receiveMessageButton.setAttribute(disabled, false)
 }
 
 function hideLogo() {
@@ -110,7 +113,7 @@ function showLogo() {
   meditationLogo.classList.remove('hidden')
 }
 
-function displayClearContents() {
+function displayClearContentsButton() {
   clearContentsButton.classList.remove('hidden')
 }
 

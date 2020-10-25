@@ -6,21 +6,22 @@
     <title>Self Care Center</title>
   </head>
   <body>
+    <section class="main-page">
     <h1>✨Self Care Center✨</h1>
     <h2>Which type of message?</h2>
     <div class="wrapper">
       <section class="selection-box">
         <section class="radio-selector-box">
-          <div class="radio">
-            <input class="" type="radio" name="radio" id="radio-affirm">
+          <div class="radio-box">
+            <input class="radio" type="radio" name="radio" id="radio-affirm">
             <label for="radio-affirm">affirmation</label>
           </div>
-          <div class="radio">
-            <input class="" type="radio" name="radio" id="radio-mantra">
+          <div class="radio-box">
+            <input class="radio" type="radio" name="radio" id="radio-mantra">
             <label for="radio-mantra">mantra</label>
           </div>
         </section>
-          <button id="receive-message" type="button" name="message">Receive Message</button>
+          <button disabled id="receive-message" type="button" name="message">Receive Message</button>
       </section>
       <section class="message-box">
         <p id="new-message"></p>
@@ -34,16 +35,18 @@
         <button id="submit" type="button" name="new-message">Submit</button>
         <h4>Select which type of message this will be:</h4>
         <section class="radio-selector-box">
-          <div class="radio">
+          <div class="radio-box">
             <input class="radio" type="radio" name="radio" id="radio-affirm-input">
             <label for="radio-affirm-input">affirmation</label>
           </div>
-          <div class="radio">
+          <div class="radio-box">
             <input class="radio" type="radio" name="radio" id="radio-mantra-input">
             <label for="radio-mantra-input">mantra</label>
           </div>
         </section>
+        <p class="error-message hidden">*Please enter positive message and select message type</p>
       </section>
+    </section>
     </div>
     <script type="text/javascript" src="main.js"></script>
   </body>
