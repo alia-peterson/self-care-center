@@ -6,25 +6,48 @@
     <title>Self Care Center</title>
   </head>
   <body>
+    <section class="main-page">
     <h1>✨Self Care Center✨</h1>
     <h2>Which type of message?</h2>
-    <section class="wrapper">
+    <div class="wrapper">
       <section class="selection-box">
-        <section id="radio-input-box">
-          <input type="radio" name="radio" value="" id="radio1">
-          <label for="radio1">affirmation</label>
-          <input type="radio" name="radio" value="" id="radio2">
-          <label for="radio2">mantra</label>
+        <section class="radio-selector-box">
+          <div class="radio-box">
+            <input class="radio" type="radio" name="radio" id="radio-affirm">
+            <label for="radio-affirm">affirmation</label>
+          </div>
+          <div class="radio-box">
+            <input class="radio" type="radio" name="radio" id="radio-mantra">
+            <label for="radio-mantra">mantra</label>
+          </div>
         </section>
-        <section>
-          <button type="button" name="message">Receive Message</button>
-        </section>
+          <button disabled id="receive-message" type="button" name="message">Receive Message</button>
       </section>
       <section class="message-box">
-        <p></p>
-        <img id="meditation-logo" src="./assets/meditate.svg" alt="meditation bell logo">
+        <p id="new-message"></p>
+        <img class="meditation-logo" src="./assets/meditate.svg" alt="meditation bell logo">
+        <button class="hidden" id="clear-contents" type="button" name="clear-contents">Clear Contents</button>
+      </section>
+      <button id="add-message" type="button" name="button">Add Message</button>
+      <section class="input-box hidden">
+        <h3>Enter your own message below:</h3>
+        <input id="message-input" type="text" name="message-input" value="" placeholder="your positive message here">
+        <button id="submit" type="button" name="new-message">Submit</button>
+        <h4>Select which type of message this will be:</h4>
+        <section class="radio-selector-box">
+          <div class="radio-box">
+            <input class="radio" type="radio" name="radio" id="radio-affirm-input">
+            <label for="radio-affirm-input">affirmation</label>
+          </div>
+          <div class="radio-box">
+            <input class="radio" type="radio" name="radio" id="radio-mantra-input">
+            <label for="radio-mantra-input">mantra</label>
+          </div>
+        </section>
+        <p class="error-message hidden">*Please enter positive message and select message type</p>
       </section>
     </section>
+    </div>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
