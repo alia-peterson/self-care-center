@@ -71,6 +71,7 @@ function displayNewMessage() {
   }
   hideMeditationLogo()
   displayClearContentsButton()
+  checkFavorite()
   displayFavoriteLogo()
 }
 
@@ -88,27 +89,35 @@ function toggleFavorite() {
   if (favoriteLogo.innerText === '🤍') {
     favoriteLogo.innerText = '♥️'
     addFavorite()
-  } else {
+  } else if (favoriteLogo.innerText === '♥️'){
     favoriteLogo.innerText = '🤍'
     removeFavorite()
   }
 }
 
+function checkFavorite() {
+  if (favoriteAffirms.includes(displayedMessage.innerText) || favoriteMantras.includes(displayedMessage.innerText)) {
+    favoriteLogo.innerText = '♥️'
+  } else {
+    favoriteLogo.innerText = '🤍'
+  }
+}
+
 function addFavorite() {
   if (document.getElementById('radio-affirm').checked) {
-    favoriteAffirms.push(displayedMessage)
+    favoriteAffirms.push(displayedMessage.innerText)
   } else if (document.getElementById('radio-mantra').checked) {
-    favoriteMantras.push(displayedMessage)
+    favoriteMantras.push(displayedMessage.innerText)
   }
 }
 
 function removeFavorite() {
   var messageIndex
-  if (favoriteAffirms.includes(displayedMessage)) {
-    messageIndex = favoriteAffirms.indexOf(displayedMessage)
+  if (favoriteAffirms.includes(displayedMessage.innerText)) {
+    messageIndex = favoriteAffirms.indexOf(displayedMessage.innerText)
     favoriteAffirms.splice(messageIndex, 1)
-  } else if (favoriteMantras.includes(displayedMessage)) {
-    messageIndex = favoriteMantras.indexOf(displayedMessage)
+  } else if (favoriteMantras.includes(displayedMessage.innerText)) {
+    messageIndex = favoriteMantras.indexOf(displayedMessage.innerText)
     favoriteMantras.splice(messageIndex, 1)
   }
 }
@@ -116,6 +125,14 @@ function removeFavorite() {
 function switchViews() {
   mainPageView.classList.toggle('hidden')
   favoritesPage.classList.toggle('hidden')
+}
+
+function displayFavorites() {
+  var affirmList = document.querySelector('.affirmation-list')
+  var mantraList = document.querySelector('.mantra-list')
+
+  affirmList.innerText = favoriteAffirms
+  mantraList.innerText = favoriteMantras
 }
 
 function showUserMessageForm() {
@@ -170,11 +187,6 @@ function hideClearContents() {
 }
 
 function displayFavoriteLogo() {
-  if (favoriteAffirms.includes(displayedMessage) || favoriteMantras.includes(displayedMessage)) {
-    favoriteLogo.innerText = '♥️'
-  } else {
-    favoriteLogo.innerText = '🤍'
-  }
   favoriteLogo.classList.remove('hidden')
 }
 
