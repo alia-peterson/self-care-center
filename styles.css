@@ -40,17 +40,37 @@ h2 {
   flex-direction: column;
 }
 
-p {
-  margin-bottom: -40px;
+h3 {
+  margin-bottom: -10px;
+}
+
+h4 {
+  margin-bottom: -10px;
+  margin-top: -5px;
 }
 
 .hidden {
   transform: scale(0.01);
-  opacity: 1;
-  transition: opacity 0;
+  opacity: 0;
+  /* transition: opacity 0;
   transition-duration: 200ms;
   transition-timing-function: ease;
+  transition-delay: 0ms; */
+}
+
+.input-box {
+  justify-content: center;
+}
+
+.meditation-logo {
+  height: 80px;
+  margin-bottom: -25px;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 3s;
+  transition-timing-function: ease;
   transition-delay: 0ms;
+  width: 80px;
 }
 
 .message-box {
@@ -66,14 +86,14 @@ p {
 
 .radio {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: min-content auto min-content auto;
   grid-gap: 0.5em;
 }
 
-.radio-input-box {
+.radio-selector-box {
   display: flex;
   margin-top: 20px;
-  justify-content: space-between;
+  justify-content: space-around;
   font-style: italic;
   width: 420px;
 }
@@ -97,6 +117,10 @@ p {
   flex-direction: column;
 }
 
+#add-message {
+  margin-top: 100px;
+}
+
 #clear-contents {
   margin-bottom: -40px;
   margin-left: 650px;
@@ -105,15 +129,12 @@ p {
 #message-input {
   height: 30px;
   font-style: italic;
-  margin-bottom: -140px;
   text-align: center;
   width: 400px;
 }
 
-#meditation-logo {
-  height: 80px;
-  margin-bottom: -25px;
-  width: 80px;
+#new-message {
+  margin-bottom: -40px;
 }
 
 /* font-family: 'Quicksand', sans-serif;
