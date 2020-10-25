@@ -32,7 +32,9 @@ var mantras = [
   'I am the sky, the rest is weather.'
 ]
 
-var favorites = []
+var favoriteAffirms = []
+
+var favoriteMantras = []
 
 //queryselectors
 var receiveMessageButton = document.querySelector('#receive-message')
@@ -84,12 +86,30 @@ function clearMessageContents() {
 
 function toggleFavorite() {
   if (favoriteLogo.innerText === '🤍') {
-    favorites.push(displayedMessage)
     favoriteLogo.innerText = '♥️'
+    addFavorite()
   } else {
-    var messageIndex = favorites.indexOf(displayedMessage)
-    favorites.splice(messageIndex, 1)
     favoriteLogo.innerText = '🤍'
+    removeFavorite()
+  }
+}
+
+function addFavorite() {
+  if (document.getElementById('radio-affirm').checked) {
+    favoriteAffirms.push(displayedMessage)
+  } else if (document.getElementById('radio-mantra').checked) {
+    favoriteMantras.push(displayedMessage)
+  }
+}
+
+function removeFavorite() {
+  var messageIndex
+  if (favoriteAffirms.includes(displayedMessage)) {
+    messageIndex = favoriteAffirms.indexOf(displayedMessage)
+    favoriteAffirms.splice(messageIndex, 1)
+  } else if (favoriteMantras.includes(displayedMessage)) {
+    messageIndex = favoriteMantras.indexOf(displayedMessage)
+    favoriteMantras.splice(messageIndex, 1)
   }
 }
 
@@ -150,7 +170,7 @@ function hideClearContents() {
 }
 
 function displayFavoriteLogo() {
-  if (favorites.includes(displayedMessage)) {
+  if (favoriteAffirms.includes(displayedMessage) || favoriteMantras.includes(displayedMessage)) {
     favoriteLogo.innerText = '♥️'
   } else {
     favoriteLogo.innerText = '🤍'
