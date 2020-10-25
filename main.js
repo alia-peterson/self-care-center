@@ -35,13 +35,21 @@ var mantras = [
 //queryselectors
 var receiveMessageButton = document.querySelector('#receive-message')
 var clearContentsButton = document.querySelector('#clear-contents')
+var addMessageButton = document.querySelector('#add-message')
+var submitButton = document.querySelector('#submit')
+
 var displayedMessage = document.querySelector('#new-message')
-var meditationLogo = document.querySelector('#meditation-logo')
+var meditationLogo = document.querySelector('.meditation-logo')
 var radioButtons = document.querySelectorAll('.radio')
+var firstRadio = document.querySelector('.radio')
+var userInputForm = document.querySelector('.input-box')
+var userInputMessage = document.querySelector('#message-input')
 
 //eventhandlers
 receiveMessageButton.addEventListener('click', displayNewMessage)
 clearContentsButton.addEventListener('click', clearMessageContents)
+addMessageButton.addEventListener('click', showUserMessageForm)
+submitButton.addEventListener('click', submitNewMessage)
 
 //functions
 function displayNewMessage() {
@@ -57,7 +65,7 @@ function displayNewMessage() {
 }
 
 function clearMessageContents() {
-  for (var i = 0; i < radioButtons.length; i++) {
+  for (var i = 0; i < 2; i++) {
     radioButtons[i].checked = false
   }
   displayedMessage.innerText = ''
@@ -65,13 +73,34 @@ function clearMessageContents() {
   hideClearContents()
 }
 
-// function enableMessageButton() {
-//   for (var i = 0; i < radioButtons.length; i++) {
-//     if (radioButtons[i].checked) {
-//       receiveMessageButton.disabled = false
-//     }
-//   }
-// }
+function showUserMessageForm() {
+  userInputForm.classList.remove('hidden')
+}
+
+function submitNewMessage() {
+  if (document.getElementById('radio-affirm-input').checked) {
+    affirmations.push(userInputMessage.value)
+  } else if (document.getElementById('radio-mantra-input').checked) {
+    mantras.push(userInputMessage.value)
+  }
+  hideLogo()
+  displayedMessage.innerText = userInputMessage.value
+  userInputMessage.value = ''
+}
+
+function addRadioEventListener() {
+  for (var i = 0; i < 2; i++) {
+    console.log('hiii');
+    radioButtons[i].addEventListener('click', function() {
+    })
+  }
+}
+
+function enableMessageButton() {
+  console.log('hello!!');
+  receiveMessageButton.disabled = false
+  // receiveMessageButton.setAttribute(disabled, false)
+}
 
 function hideLogo() {
   meditationLogo.classList.add('hidden')
