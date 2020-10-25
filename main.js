@@ -32,23 +32,33 @@ var mantras = [
   'I am the sky, the rest is weather.'
 ]
 
+var favorites = []
+
 //queryselectors
 var receiveMessageButton = document.querySelector('#receive-message')
 var clearContentsButton = document.querySelector('#clear-contents')
 var addMessageButton = document.querySelector('#add-message')
 var submitButton = document.querySelector('#submit')
+var favoritesButton = document.querySelector('#view-favorites')
+var mainPageButton = document.querySelector('#main-page')
+var favoriteLogo = document.querySelector('#favorite-logo')
 
 var displayedMessage = document.querySelector('#new-message')
 var meditationLogo = document.querySelector('.meditation-logo')
 var radioButtons = document.querySelectorAll('.radio')
 var userInputForm = document.querySelector('.input-box')
 var userInputMessage = document.querySelector('#message-input')
+var mainPageView = document.querySelector('.main-page')
+var favoritesPage = document.querySelector('.favorites-page')
 
 //eventhandlers
 receiveMessageButton.addEventListener('click', displayNewMessage)
 clearContentsButton.addEventListener('click', clearMessageContents)
 addMessageButton.addEventListener('click', showUserMessageForm)
 submitButton.addEventListener('click', submitNewMessage)
+favoritesButton.addEventListener('click', switchViews)
+mainPageButton.addEventListener('click', switchViews)
+favoriteLogo.addEventListener('click', toggleFavorite)
 
 //functions
 function displayNewMessage() {
@@ -57,8 +67,9 @@ function displayNewMessage() {
   } else if (document.getElementById('radio-mantra').checked) {
     displayedMessage.innerText = mantras[randomIndexGenerator(mantras)]
   }
-  hideLogo()
+  hideMeditationLogo()
   displayClearContentsButton()
+  displayFavoriteLogo()
 }
 
 function clearMessageContents() {
@@ -66,8 +77,25 @@ function clearMessageContents() {
   radioButtons[1].checked = false
 
   displayedMessage.innerText = ''
-  showLogo()
+  displayMeditationLogo()
   hideClearContents()
+  hideFavoriteLogo()
+}
+
+function toggleFavorite() {
+  if (favoriteLogo.innerText === '🤍') {
+    favorites.push(displayedMessage)
+    favoriteLogo.innerText = '♥️'
+  } else {
+    var messageIndex = favorites.indexOf(displayedMessage)
+    favorites.splice(messageIndex, 1)
+    favoriteLogo.innerText = '🤍'
+  }
+}
+
+function switchViews() {
+  mainPageView.classList.toggle('hidden')
+  favoritesPage.classList.toggle('hidden')
 }
 
 function showUserMessageForm() {
@@ -82,7 +110,7 @@ function submitNewMessage() {
   } else {
     return document.querySelector('.error-message').classList.remove('hidden')
   }
-  hideLogo()
+  hideMeditationLogo()
   displayUserMessage()
 }
 
@@ -105,12 +133,12 @@ function enableMessageButton() {
   receiveMessageButton.disabled = false
 }
 
-function hideLogo() {
-  meditationLogo.classList.add('hidden')
+function displayMeditationLogo() {
+  meditationLogo.classList.remove('hidden')
 }
 
-function showLogo() {
-  meditationLogo.classList.remove('hidden')
+function hideMeditationLogo() {
+  meditationLogo.classList.add('hidden')
 }
 
 function displayClearContentsButton() {
@@ -119,6 +147,19 @@ function displayClearContentsButton() {
 
 function hideClearContents() {
   clearContentsButton.classList.add('hidden')
+}
+
+function displayFavoriteLogo() {
+  if (favorites.includes(displayedMessage)) {
+    favoriteLogo.innerText = '♥️'
+  } else {
+    favoriteLogo.innerText = '🤍'
+  }
+  favoriteLogo.classList.remove('hidden')
+}
+
+function hideFavoriteLogo() {
+  favoriteLogo.classList.add('hidden')
 }
 
 function randomIndexGenerator(array) {

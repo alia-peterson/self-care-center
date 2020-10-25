@@ -24,10 +24,12 @@
           <button disabled id="receive-message" type="button" name="message">Receive Message</button>
       </section>
       <section class="message-box">
+        <p class="hidden" id="favorite-logo"></p>
         <p id="new-message"></p>
         <img class="meditation-logo" src="./assets/meditate.svg" alt="meditation bell logo">
         <button class="hidden" id="clear-contents" type="button" name="clear-contents">Clear Contents</button>
       </section>
+      <button id="view-favorites" type="button" name="button">View Favorites</button>
       <button id="add-message" type="button" name="button">Add Message</button>
       <section class="input-box hidden">
         <h3>Enter your own message below:</h3>
@@ -46,6 +48,16 @@
         </section>
         <p class="error-message hidden">*Please enter positive message and select message type</p>
       </section>
+    </section>
+    <section class="favorites-page hidden">
+      <h1>✨Favorite Messages✨</h1>
+      <div class="wrapper">
+        <h2>Favorite Affirmations</h2>
+        <p class="affirmations-list"></p>
+        <h2>Favorite Mantras</h2>
+        <p class="mantras-list"></p>
+        <button id="main-page" type="button" name="button">Main Page</button>
+      </div>
     </section>
     </div>
     <script type="text/javascript" src="main.js"></script>
