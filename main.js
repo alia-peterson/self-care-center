@@ -69,6 +69,7 @@ mainPageButton.addEventListener('click', function() {
 favoritesButton.addEventListener('click', function() {
   switchViews()
   displayFavorites()
+  addListItemEventListener()
 })
 
 //functions
@@ -122,11 +123,15 @@ function addFavorite() {
 
 function removeFavorite() {
   var messageIndex
-  if (favoriteAffirms.includes(displayedMessage.innerText)) {
-    messageIndex = favoriteAffirms.indexOf(displayedMessage.innerText)
+  spliceFavoriteArrays(displayedMessage.innerText)
+}
+
+function spliceFavoriteArrays(input) {
+  if (favoriteAffirms.includes(input)) {
+    messageIndex = favoriteAffirms.indexOf(input)
     favoriteAffirms.splice(messageIndex, 1)
-  } else if (favoriteMantras.includes(displayedMessage.innerText)) {
-    messageIndex = favoriteMantras.indexOf(displayedMessage.innerText)
+  } else if (favoriteMantras.includes(input)) {
+    messageIndex = favoriteMantras.indexOf(input)
     favoriteMantras.splice(messageIndex, 1)
   }
 }
@@ -165,9 +170,7 @@ function showUserMessageForm() {
 
 function submitNewMessage() {
   if (document.getElementById('radio-affirm-input').checked && userInputMessage.value) {
-    console.log(affirmations);
     affirmations.push(userInputMessage.value)
-    console.log(affirmations);
   } else if (document.getElementById('radio-mantra-input').checked && userInputMessage.value) {
     mantras.push(userInputMessage.value)
   } else {
@@ -187,6 +190,19 @@ function displayUserMessage() {
 
   radioButtons[2].checked = false
   radioButtons[3].checked = false
+}
+
+function addListItemEventListener() {
+  var listItems = document.querySelectorAll('li')
+  for (var i = 0; i < listItems.length; i++) {
+    listItems[i].addEventListener('dblclick', deleteListItem)
+  }
+}
+
+function deleteListItem() {
+  spliceFavoriteArrays(event.target.innerText)
+  displayFavorites()
+  addListItemEventListener()
 }
 
 function addRadioEventListener() {
