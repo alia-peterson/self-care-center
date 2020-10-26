@@ -58,9 +58,13 @@ receiveMessageButton.addEventListener('click', displayNewMessage)
 clearContentsButton.addEventListener('click', clearMessageContents)
 addMessageButton.addEventListener('click', showUserMessageForm)
 submitButton.addEventListener('click', submitNewMessage)
-favoritesButton.addEventListener('click', switchViews)
 mainPageButton.addEventListener('click', switchViews)
 favoriteLogo.addEventListener('click', toggleFavorite)
+
+favoritesButton.addEventListener('click', function() {
+  switchViews()
+  displayFavorites()
+})
 
 //functions
 function displayNewMessage() {
@@ -104,9 +108,9 @@ function checkFavorite() {
 }
 
 function addFavorite() {
-  if (document.getElementById('radio-affirm').checked) {
+  if (affirmations.includes(displayedMessage.innerText)) {
     favoriteAffirms.push(displayedMessage.innerText)
-  } else if (document.getElementById('radio-mantra').checked) {
+  } else if (mantras.includes(displayedMessage.innerText)) {
     favoriteMantras.push(displayedMessage.innerText)
   }
 }
@@ -128,20 +132,30 @@ function switchViews() {
 }
 
 function displayFavorites() {
-  var affirmList = document.querySelector('.affirmation-list')
-  var mantraList = document.querySelector('.mantra-list')
+  var affirmList = document.querySelector('.affirmations-list')
+  var mantraList = document.querySelector('.mantras-list')
 
-  affirmList.innerText = favoriteAffirms
-  mantraList.innerText = favoriteMantras
+  affirmList.innerHTML = ``
+  mantraList.innerHTML = ``
+
+  for (var i = 0; i < favoriteAffirms.length; i++) {
+    affirmList.innerHTML += `<li>${favoriteAffirms[i]}</li>`
+  }
+
+  for (var i = 0; i < favoriteMantras.length; i++) {
+    mantraList.innerHTML += `<li>${favoriteMantras[i]}</li>`
+  }
 }
 
 function showUserMessageForm() {
-  userInputForm.classList.remove('hidden')
+  userInputForm.classList.toggle('hidden')
 }
 
 function submitNewMessage() {
   if (document.getElementById('radio-affirm-input').checked && userInputMessage.value) {
+    console.log(affirmations);
     affirmations.push(userInputMessage.value)
+    console.log(affirmations);
   } else if (document.getElementById('radio-mantra-input').checked && userInputMessage.value) {
     mantras.push(userInputMessage.value)
   } else {
@@ -149,6 +163,9 @@ function submitNewMessage() {
   }
   hideMeditationLogo()
   displayUserMessage()
+  displayClearContentsButton()
+  displayFavoriteLogo()
+  checkFavorite()
 }
 
 function displayUserMessage() {
