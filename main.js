@@ -43,8 +43,9 @@ var addMessageButton = document.querySelector('#add-message')
 var submitButton = document.querySelector('#submit')
 var favoritesButton = document.querySelector('#view-favorites')
 var mainPageButton = document.querySelector('#main-page')
-var favoriteLogo = document.querySelector('#favorite-logo')
+var clearFavoritesButton = document.querySelector('#clear-favorites')
 
+var favoriteLogo = document.querySelector('#favorite-logo')
 var displayedMessage = document.querySelector('#new-message')
 var meditationLogo = document.querySelector('.meditation-logo')
 var radioButtons = document.querySelectorAll('.radio')
@@ -58,8 +59,12 @@ receiveMessageButton.addEventListener('click', displayNewMessage)
 clearContentsButton.addEventListener('click', clearMessageContents)
 addMessageButton.addEventListener('click', showUserMessageForm)
 submitButton.addEventListener('click', submitNewMessage)
-mainPageButton.addEventListener('click', switchViews)
 favoriteLogo.addEventListener('click', toggleFavorite)
+clearFavoritesButton.addEventListener('click', clearFavoritesArray)
+mainPageButton.addEventListener('click', function() {
+  switchViews()
+  checkFavorite()
+})
 
 favoritesButton.addEventListener('click', function() {
   switchViews()
@@ -145,6 +150,13 @@ function displayFavorites() {
   for (var i = 0; i < favoriteMantras.length; i++) {
     mantraList.innerHTML += `<li>${favoriteMantras[i]}</li>`
   }
+}
+
+function clearFavoritesArray() {
+  favoriteAffirms = []
+  favoriteMantras = []
+
+  displayFavorites()
 }
 
 function showUserMessageForm() {
