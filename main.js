@@ -32,23 +32,45 @@ var mantras = [
   'I am the sky, the rest is weather.'
 ]
 
+var favoriteAffirms = []
+
+var favoriteMantras = []
+
 //queryselectors
 var receiveMessageButton = document.querySelector('#receive-message')
 var clearContentsButton = document.querySelector('#clear-contents')
 var addMessageButton = document.querySelector('#add-message')
 var submitButton = document.querySelector('#submit')
+var favoritesButton = document.querySelector('#view-favorites')
+var mainPageButton = document.querySelector('#main-page')
+var clearFavoritesButton = document.querySelector('#clear-favorites')
 
+var favoriteLogo = document.querySelector('#favorite-logo')
 var displayedMessage = document.querySelector('#new-message')
 var meditationLogo = document.querySelector('.meditation-logo')
 var radioButtons = document.querySelectorAll('.radio')
 var userInputForm = document.querySelector('.input-box')
 var userInputMessage = document.querySelector('#message-input')
+var mainPageView = document.querySelector('.main-page')
+var favoritesPage = document.querySelector('.favorites-page')
 
 //eventhandlers
 receiveMessageButton.addEventListener('click', displayNewMessage)
 clearContentsButton.addEventListener('click', clearMessageContents)
 addMessageButton.addEventListener('click', showUserMessageForm)
 submitButton.addEventListener('click', submitNewMessage)
+favoriteLogo.addEventListener('click', toggleFavorite)
+clearFavoritesButton.addEventListener('click', clearFavoritesArray)
+mainPageButton.addEventListener('click', function() {
+  switchViews()
+  checkFavorite()
+})
+
+favoritesButton.addEventListener('click', function() {
+  switchViews()
+  displayFavorites()
+  addListItemEventListener()
+})
 
 //functions
 function displayNewMessage() {
@@ -57,8 +79,10 @@ function displayNewMessage() {
   } else if (document.getElementById('radio-mantra').checked) {
     displayedMessage.innerText = mantras[randomIndexGenerator(mantras)]
   }
-  hideLogo()
+  hideMeditationLogo()
   displayClearContentsButton()
+  checkFavorite()
+  displayFavoriteLogo()
 }
 
 function clearMessageContents() {
@@ -66,12 +90,82 @@ function clearMessageContents() {
   radioButtons[1].checked = false
 
   displayedMessage.innerText = ''
-  showLogo()
+  displayMeditationLogo()
   hideClearContents()
+  hideFavoriteLogo()
+}
+
+function toggleFavorite() {
+  if (favoriteLogo.innerText === '🤍') {
+    favoriteLogo.innerText = '♥️'
+    addFavorite()
+  } else if (favoriteLogo.innerText === '♥️'){
+    favoriteLogo.innerText = '🤍'
+    removeFavorite()
+  }
+}
+
+function checkFavorite() {
+  if (favoriteAffirms.includes(displayedMessage.innerText) || favoriteMantras.includes(displayedMessage.innerText)) {
+    favoriteLogo.innerText = '♥️'
+  } else {
+    favoriteLogo.innerText = '🤍'
+  }
+}
+
+function addFavorite() {
+  if (affirmations.includes(displayedMessage.innerText)) {
+    favoriteAffirms.push(displayedMessage.innerText)
+  } else if (mantras.includes(displayedMessage.innerText)) {
+    favoriteMantras.push(displayedMessage.innerText)
+  }
+}
+
+function removeFavorite() {
+  var messageIndex
+  spliceFavoriteArrays(displayedMessage.innerText)
+}
+
+function spliceFavoriteArrays(input) {
+  if (favoriteAffirms.includes(input)) {
+    messageIndex = favoriteAffirms.indexOf(input)
+    favoriteAffirms.splice(messageIndex, 1)
+  } else if (favoriteMantras.includes(input)) {
+    messageIndex = favoriteMantras.indexOf(input)
+    favoriteMantras.splice(messageIndex, 1)
+  }
+}
+
+function switchViews() {
+  mainPageView.classList.toggle('hidden')
+  favoritesPage.classList.toggle('hidden')
+}
+
+function displayFavorites() {
+  var affirmList = document.querySelector('.affirmations-list')
+  var mantraList = document.querySelector('.mantras-list')
+
+  affirmList.innerHTML = ``
+  mantraList.innerHTML = ``
+
+  for (var i = 0; i < favoriteAffirms.length; i++) {
+    affirmList.innerHTML += `<li>${favoriteAffirms[i]}</li>`
+  }
+
+  for (var i = 0; i < favoriteMantras.length; i++) {
+    mantraList.innerHTML += `<li>${favoriteMantras[i]}</li>`
+  }
+}
+
+function clearFavoritesArray() {
+  favoriteAffirms = []
+  favoriteMantras = []
+
+  displayFavorites()
 }
 
 function showUserMessageForm() {
-  userInputForm.classList.remove('hidden')
+  userInputForm.classList.toggle('hidden')
 }
 
 function submitNewMessage() {
@@ -82,8 +176,11 @@ function submitNewMessage() {
   } else {
     return document.querySelector('.error-message').classList.remove('hidden')
   }
-  hideLogo()
+  hideMeditationLogo()
   displayUserMessage()
+  displayClearContentsButton()
+  displayFavoriteLogo()
+  checkFavorite()
 }
 
 function displayUserMessage() {
@@ -93,6 +190,19 @@ function displayUserMessage() {
 
   radioButtons[2].checked = false
   radioButtons[3].checked = false
+}
+
+function addListItemEventListener() {
+  var listItems = document.querySelectorAll('li')
+  for (var i = 0; i < listItems.length; i++) {
+    listItems[i].addEventListener('dblclick', deleteListItem)
+  }
+}
+
+function deleteListItem() {
+  spliceFavoriteArrays(event.target.innerText)
+  displayFavorites()
+  addListItemEventListener()
 }
 
 function addRadioEventListener() {
@@ -105,12 +215,12 @@ function enableMessageButton() {
   receiveMessageButton.disabled = false
 }
 
-function hideLogo() {
-  meditationLogo.classList.add('hidden')
+function displayMeditationLogo() {
+  meditationLogo.classList.remove('hidden')
 }
 
-function showLogo() {
-  meditationLogo.classList.remove('hidden')
+function hideMeditationLogo() {
+  meditationLogo.classList.add('hidden')
 }
 
 function displayClearContentsButton() {
@@ -119,6 +229,14 @@ function displayClearContentsButton() {
 
 function hideClearContents() {
   clearContentsButton.classList.add('hidden')
+}
+
+function displayFavoriteLogo() {
+  favoriteLogo.classList.remove('hidden')
+}
+
+function hideFavoriteLogo() {
+  favoriteLogo.classList.add('hidden')
 }
 
 function randomIndexGenerator(array) {

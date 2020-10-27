@@ -1,12 +1,14 @@
 * {
-  //border: solid black 1px;
+  /* border: solid black 1px; */
 }
 
 body, html {
   background: linear-gradient(#134d71 20%, #F8BBD0);
-  background-size: cover;
+  background-size: auto;
   height: 100%;
-  font-family: 'Quicksand', sans-serif
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  overflow: hidden;
 }
 
 button {
@@ -17,11 +19,16 @@ button {
   font-size: 18px;
   height: 30px;
   margin: 20px;
+  text-align: center;
   width: 200px;
 }
 
 button:disabled {
   background-color: grey;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 h1 {
@@ -49,13 +56,37 @@ h4 {
   margin-top: -5px;
 }
 
+li {
+  list-style: none;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+ul {
+  align-items: center;
+  justify-content: center;
+  min-width: 500px;
+  padding: 0px;
+  position: relative;
+}
+
+ul:hover::after {
+  align-items: center;
+  color: white;
+  content: "Double click any message to delete it from your favorites";
+  justify-content: center;
+  opacity: 80%;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
 .hidden {
-  transform: scale(0.01);
-  opacity: 0;
-  /* transition: opacity 0;
-  transition-duration: 200ms;
-  transition-timing-function: ease;
-  transition-delay: 0ms; */
+  display: none;
 }
 
 .input-box {
@@ -64,12 +95,7 @@ h4 {
 
 .meditation-logo {
   height: 80px;
-  margin-bottom: -25px;
-  opacity: 1;
-  transition-property: opacity;
-  transition-duration: 3s;
-  transition-timing-function: ease;
-  transition-delay: 0ms;
+  position: absolute;
   width: 80px;
 }
 
@@ -84,7 +110,7 @@ h4 {
   width: 860px
 }
 
-.radio {
+.radio-box {
   display: grid;
   grid-template-columns: min-content auto min-content auto;
   grid-gap: 0.5em;
@@ -115,15 +141,27 @@ h4 {
   align-items: center;
   display: flex;
   flex-direction: column;
-}
-
-#add-message {
-  margin-top: 100px;
+  justify-content: center;
 }
 
 #clear-contents {
-  margin-bottom: -40px;
   margin-left: 650px;
+  margin-top: 80px;
+}
+
+#favorite-logo {
+  cursor: pointer;
+  margin-left: 800px;
+  margin-top: 20px;
+}
+
+#favorite-logo:hover:after {
+  background-color: #134d71;
+  color: white;
+  content: "Add Favorite";
+  margin-left: 3px;
+  padding: 4px;
+  position: absolute;
 }
 
 #message-input {
@@ -134,7 +172,11 @@ h4 {
 }
 
 #new-message {
-  margin-bottom: -40px;
+  position: absolute;
+}
+
+#view-favorites {
+  margin-top: 80px;
 }
 
 /* font-family: 'Quicksand', sans-serif;
