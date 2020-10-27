@@ -3,12 +3,13 @@
 }
 
 body, html {
-  background: linear-gradient(#134d71 20%, #F8BBD0);
+  background: linear-gradient(#134d71 15%, #f7e4bf);
   background-size: auto;
   height: 100%;
   font-family: 'Quicksand', sans-serif;
-  margin: 0;
-  overflow: hidden;
+  margin: 0px;
+  overflow: visible;
+  padding-bottom: 120px;
 }
 
 button {
@@ -36,8 +37,9 @@ h1 {
   color: white;
   display: flex;
   flex-direction: column;
-  margin-bottom: 110px;
-  padding-top: 40px;
+  font-size: 30px;
+  margin-bottom: 100px;
+  padding-top: 55px;
 }
 
 h2 {
@@ -107,6 +109,7 @@ ul:hover::after {
   flex-direction: column;
   height: 160px;
   justify-content: center;
+  position: relative;
   width: 860px
 }
 
@@ -158,8 +161,9 @@ ul:hover::after {
 #favorite-logo:hover:after {
   background-color: #134d71;
   color: white;
-  content: "Add Favorite";
+  content: "Add to Favorites";
   margin-left: 3px;
+  min-width: 122px;
   padding: 4px;
   position: absolute;
 }
